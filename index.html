@@ -128,21 +128,46 @@
     color:var(--gold-bright);
   }
   .hero-main{
-    display:flex;
-    align-items:flex-end;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    align-items:center;
     gap:40px;
-    flex-wrap:wrap;
+  }
+  .hero-photo-wrap{
+    position:relative;
+    justify-self:end;
   }
   .hero-portrait{
-    width:200px;
-    max-width:40vw;
+    width:260px;
+    max-width:100%;
     height:auto;
     display:block;
-    order:2;
   }
-  @media (max-width:640px){
-    .hero-main{flex-direction:column-reverse; align-items:flex-start; gap:16px;}
-    .hero-portrait{width:170px; max-width:60vw;}
+  .hero-cta{
+    display:flex;
+    gap:16px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .hero-cta a{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-decoration:none;
+    padding:13px 24px;
+  }
+  .hero-cta .primary{
+    background:var(--gold);
+    color:#1c1712;
+  }
+  .hero-cta .secondary{
+    border:1px solid var(--line);
+    color:var(--text);
+  }
+  @media (max-width:720px){
+    .hero-main{grid-template-columns:1fr; gap:44px;}
+    .hero-photo-wrap{justify-self:start; order:-1;}
+    .hero-portrait{width:180px;}
   }
   .hero-sub{
     margin-top:32px;
@@ -193,21 +218,13 @@
 
   /* ---- Sections ---- */
   section{
-    padding:150px 0;
+    padding:200px 0;
     position:relative;
   }
-  .section-head{margin-bottom:64px; position:relative;}
-  .ghost-num{
-    position:absolute;
-    top:-16px; left:-6px;
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:86px;
-    color:var(--ghost);
-    line-height:1;
-    z-index:0;
-    user-select:none;
+  @media (max-width:640px){
+    section{padding:130px 0;}
   }
+  .section-head{margin-bottom:64px; margin-top:12px; position:relative;}
   .section-num{
     position:relative;
     font-family:'Space Mono', monospace;
@@ -393,16 +410,37 @@
   }
   #final .brandmark span{color:var(--gold);}
 
-  /* ---- Logo placement ---- */
-  #logo-top{
+  /* ---- Navbar ---- */
+  #navbar{
     position:fixed;
-    top:20px; left:28px;
-    height:34px;
+    top:0; left:0; right:0;
     z-index:60;
-    opacity:0.92;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(10,10,11,0.75);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;
   }
-  @media (max-width:720px){
-    #logo-top{height:26px; top:16px; left:20px;}
+  #navbar img{height:30px;}
+  #navbar nav{
+    display:flex;
+    gap:26px;
+  }
+  #navbar nav a{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color:var(--text-muted);
+    text-decoration:none;
+  }
+  #navbar nav a:hover{color:var(--gold-bright);}
+  #navbar nav a::before{content:'// '; color:var(--gold);}
+  @media (max-width:800px){
+    #navbar nav{display:none;}
+    #navbar{padding:14px 20px;}
+    #navbar img{height:24px;}
   }
   footer{
     padding:40px 28px 60px;
@@ -411,33 +449,126 @@
     color:var(--text-muted);
     letter-spacing:0.08em;
   }
+
+  /* ---- Contact links ---- */
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:36px;
+    max-width:520px;
+  }
+  .contact-link{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 24px;
+    background:var(--surface);
+    text-decoration:none;
+    color:var(--text);
+    transition:opacity 0.2s;
+  }
+  .contact-link:hover{opacity:0.75;}
+  .contact-link .l{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .contact-link .v{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+  }
+  .contact-link.primary .v{color:var(--gold-bright);}
+
+  /* ---- Stats grid ---- */
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:28px;
+    margin-top:56px;
+  }
+  .stat .n{
+    font-family:'Fraunces', serif;
+    font-size:34px;
+    color:var(--gold-bright);
+    line-height:1;
+  }
+  .stat .l{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-top:8px;
+  }
+  @media (max-width:600px){
+    .stats-grid{grid-template-columns:repeat(2, 1fr); row-gap:36px;}
+  }
+
+  /* ---- Value pills ---- */
+  .pill-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:28px;
+  }
+  .pill{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--gold-bright);
+    background:rgba(201,163,84,0.1);
+    padding:8px 16px;
+  }
 </style>
 </head>
 <body>
 
 <div id="thread"><div id="thread-fill"></div><div id="thread-tip"></div></div>
 
-<img id="logo-top" src="assets/logo.png" alt="Gabriel | Barber Studio">
+<div id="navbar">
+  <img src="assets/logo.png" alt="Gabriel | Barber Studio">
+  <nav>
+    <a href="#apresentacao">sobre</a>
+    <a href="#servicos">serviços</a>
+    <a href="#diferenciais">diferenciais</a>
+    <a href="#depoimentos">depoimentos</a>
+    <a href="#formacao">formação</a>
+    <a href="#contato">contato</a>
+  </nav>
+</div>
 
 <!-- HERO -->
 <section id="hero" style="border-top:none;">
-  <div class="eyebrow">Gabriel · Barber Studio</div>
   <div class="hero-main">
-    <h1>“A arte de cortar vai além da aparência. <em>É sobre identidade.</em> É ser, não parecer ser.”</h1>
-    <img class="hero-portrait" src="assets/portrait.png" alt="Gabriel, barbeiro">
-  </div>
-  <div class="hero-badges">
-    <span>5.0 ★ Google</span>
-    <span>Desde 2024</span>
+    <div>
+      <div class="eyebrow">disponível para novos clientes</div>
+      <h1>“A arte de cortar vai além da aparência. <em>É sobre identidade.</em> É ser, não parecer ser.”</h1>
+      <div class="hero-badges">
+        <span>5.0 ★ Google</span>
+        <span>Desde 2024</span>
+      </div>
+      <div class="hero-cta">
+        <a class="primary" href="#servicos">Ver serviços</a>
+        <a class="secondary" href="https://gabriel-barber-studio.vercel.app" target="_blank" rel="noopener">Agendar horário</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img class="hero-portrait" src="assets/portrait.png" alt="Gabriel, barbeiro">
+        <div class="l">Anos<br>de estúdio</div>
+      </div>
+    </div>
   </div>
   <div class="hero-brand">Gabriel <span>|</span> Barber Studio</div>
   <div class="scroll-cue"><div class="line"></div>Role para conhecer</div>
 </section>
 
 <!-- APRESENTAÇÃO -->
-<section class="wrap">
+<section class="wrap" id="apresentacao">
   <div class="section-head reveal">
-    <span class="ghost-num">01</span><span class="section-num">01 — Apresentação</span>
+    <span class="section-num">Apresentação</span>
     <h2>Seja bem-vindo</h2>
   </div>
   <div class="reveal">
@@ -446,23 +577,36 @@
     <p class="lede">Hoje, esse propósito se traduz em cada atendimento do Gabriel | Barber Studio. Mais do que cortes de cabelo e serviços de barbearia, meu trabalho é contribuir para a construção da imagem masculina através de um atendimento personalizado, técnico e atento aos detalhes — porque cada cliente possui características, objetivos e estilo próprios.</p>
     <p class="lede">Aqui, cada atendimento carrega uma mensagem: <strong style="color:var(--gold-bright); font-weight:600;">renovação.</strong></p>
   </div>
+  <div class="stats-grid reveal">
+    <div class="stat"><div class="n">2024</div><div class="l">Desde</div></div>
+    <div class="stat"><div class="n">5.0</div><div class="l">★ Google</div></div>
+    <div class="stat"><div class="n">7</div><div class="l">Serviços</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Certificações</div></div>
+  </div>
 </section>
 
 <!-- FILOSOFIA -->
 <section class="wrap">
   <div class="section-head reveal">
-    <span class="ghost-num">02</span><span class="section-num">02 — Filosofia de Trabalho</span>
+    <span class="section-num">Filosofia de Trabalho</span>
     <h2>Renovação com propósito</h2>
   </div>
   <div class="reveal">
     <p class="body-text">Nunca é apenas um corte de cabelo (ou qualquer outro serviço de estética). Por trás de cada atendimento existe alguém em busca de renovação. A renovação parte da integridade, e a integridade nasce do equilíbrio entre matéria e essência: entre o que se vê e o que se é. Portanto, meu propósito não consiste apenas em renovar a estética, mas em elevar a essência de cada um à sua melhor versão.</p>
+    <div class="pill-row">
+      <span class="pill">Honra</span>
+      <span class="pill">Integridade</span>
+      <span class="pill">Autogoverno</span>
+      <span class="pill">Autenticidade</span>
+      <span class="pill">Ousadia</span>
+    </div>
   </div>
 </section>
 
 <!-- METODOLOGIA -->
 <section class="wrap">
   <div class="section-head reveal">
-    <span class="ghost-num">03</span><span class="section-num">03 — Metodologia de Atendimento</span>
+    <span class="section-num">Metodologia de Atendimento</span>
     <h2>Um processo claro</h2>
   </div>
   <div class="reveal">
@@ -477,9 +621,9 @@
 </section>
 
 <!-- SERVIÇOS -->
-<section class="wrap">
+<section class="wrap" id="servicos">
   <div class="section-head reveal">
-    <span class="ghost-num">04</span><span class="section-num">04 — Serviços Oferecidos</span>
+    <span class="section-num">Serviços Oferecidos</span>
     <h2>O que faço</h2>
   </div>
   <div class="services-grid reveal">
@@ -515,9 +659,9 @@
 </section>
 
 <!-- DIFERENCIAIS -->
-<section class="wrap">
+<section class="wrap" id="diferenciais">
   <div class="section-head reveal">
-    <span class="ghost-num">05</span><span class="section-num">05 — Diferenciais</span>
+    <span class="section-num">Diferenciais</span>
     <h2>Mais do que um atendimento convencional</h2>
   </div>
   <div class="diff-grid reveal">
@@ -538,9 +682,9 @@
 </section>
 
 <!-- DEPOIMENTOS -->
-<section class="wrap">
+<section class="wrap" id="depoimentos">
   <div class="section-head reveal">
-    <span class="ghost-num">06</span><span class="section-num">06 — Depoimentos</span>
+    <span class="section-num">Depoimentos</span>
     <h2>Quem já passou pela cadeira</h2>
   </div>
   <div class="testi-grid reveal">
@@ -578,9 +722,9 @@
 </section>
 
 <!-- QUALIFICAÇÃO -->
-<section class="wrap">
+<section class="wrap" id="formacao">
   <div class="section-head reveal">
-    <span class="ghost-num">07</span><span class="section-num">07 — Qualificação Profissional</span>
+    <span class="section-num">Qualificação Profissional</span>
     <h2>Aperfeiçoamento constante</h2>
   </div>
   <p class="lede reveal">A busca pela excelência faz parte do meu compromisso profissional. Por isso, invisto continuamente em cursos e capacitações voltados para técnicas de corte, barba e estética masculina.</p>
@@ -610,11 +754,31 @@
   </div>
 </section>
 
+<!-- CONTATO -->
+<section class="wrap" id="contato">
+  <div class="section-head reveal">
+    <span class="section-num">Contato</span>
+    <h2>Vamos cuidar da sua imagem?</h2>
+  </div>
+  <p class="lede reveal">Fale comigo ou agende seu horário diretamente — será um prazer fazer parte da sua renovação.</p>
+  <div class="contact-links reveal">
+    <a href="https://wa.me/5522997265392" target="_blank" rel="noopener" class="contact-link">
+      <span class="l">WhatsApp</span><span class="v">(22) 99726-5392</span>
+    </a>
+    <a href="https://instagram.com/gabriel.bstudio" target="_blank" rel="noopener" class="contact-link">
+      <span class="l">Instagram</span><span class="v">@gabriel.bstudio</span>
+    </a>
+    <a href="https://gabriel-barber-studio.vercel.app" target="_blank" rel="noopener" class="contact-link primary">
+      <span class="l">Agendamento</span><span class="v">Agendar horário →</span>
+    </a>
+  </div>
+</section>
+
 <!-- CONSIDERAÇÕES FINAIS -->
 <section id="final">
   <div class="wrap">
   <div class="section-head reveal">
-    <span class="ghost-num">08</span><span class="section-num">08 — Considerações Finais</span>
+    <span class="section-num">Considerações Finais</span>
   </div>
   <p class="lede reveal">Cada corte é uma oportunidade de renovação. Se você chegou até aqui, já sabe o que busco entregar — e será um prazer fazer parte dessa jornada com você.</p>
   <div class="brandmark reveal">Gabriel <span>|</span> Barber Studio</div>
