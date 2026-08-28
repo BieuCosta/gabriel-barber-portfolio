@@ -927,6 +927,17 @@
     window.scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = prev;
   });
+
+  // Scissors-snip click sound (real audio clip)
+  const snipAudio = new Audio('assets/snip.mp3');
+  snipAudio.preload = 'auto';
+  function playSnip(){
+    const s = snipAudio.cloneNode();
+    s.play().catch(() => {});
+  }
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button')) playSnip();
+  });
 </script>
 
 </body>
